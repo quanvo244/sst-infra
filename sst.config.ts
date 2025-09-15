@@ -10,11 +10,13 @@ export default $config({
     };
   },
   async run() {
-    const storage = await import("./infra/storage");
-    await import("./infra/api");
+    // const storage = await import("./infra/storage");
+    // await import("./infra/api");
 
-    return {
-      MyBucket: storage.bucket.name,
-    };
+    // return {
+    //   Uploads: storage.bucket.name,
+    // };
+    await import("./infra/storage");
+    await import("./infra/api");  
   },
 });

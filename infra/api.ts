@@ -1,7 +1,14 @@
-import { bucket } from "./storage";
+import {table} from './storage'
+// Create new api
 
-export const myApi = new sst.aws.Function("MyApi", {
-  url: true,
-  link: [bucket],
-  handler: "packages/functions/src/api.handler"
+export const api = new sst.aws.ApiGatewayV2("Api", {
+  transform: {
+    route: {
+      handler: {
+        link:[table]
+      }
+    }
+  }
 });
+
+api.route("POST /notes", "packages/function/src/notes/create.main");
